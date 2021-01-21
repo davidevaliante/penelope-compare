@@ -54,7 +54,11 @@ const BonusStripe: FunctionComponent<Props> = ({ bonus, eng = false, countryCode
         const links = bonus.links
         const matchingLink = links.find(it => it.label === `${bonus.compareCode} ${configuration.streamerName} ${countryCode}`)
         if(matchingLink) return matchingLink.link
-        else return links.find(it => it.label === `${bonus.compareCode} ${configuration.streamerName} row`)?.link
+        else {
+            const toReturn =  links.find(it => it.label === `${bonus.compareCode} ${configuration.streamerName} row`)
+            if(toReturn) return toReturn.link
+            else return ''
+        }
     }
 
     return (
