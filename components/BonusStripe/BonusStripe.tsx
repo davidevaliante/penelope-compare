@@ -32,14 +32,22 @@ const BonusStripe: FunctionComponent<Props> = ({ bonus, eng = false, countryCode
         const texts = bonus.noDepositDescription
         const matchingText = texts.find(it => it.label === countryCode)
         if(matchingText) return matchingText.description
-        else return texts.find(it => it.label === 'row')?.description
+        else {
+            const toReturn  = texts.find(it => it.label === 'row')
+            if(toReturn) return toReturn.description
+            else return ''
+        } 
     }
 
     const extractWithDepositText = () => {
         const texts = bonus.withDepositDescription
         const matchingText = texts.find(it => it.label === countryCode)
         if(matchingText) return matchingText.description
-        else return texts.find(it => it.label === 'row')?.description
+        else {
+            const toReturn  = texts.find(it => it.label === 'row')
+            if(toReturn) return toReturn.description
+            else return ''
+        } 
     }
 
     const extractLink = () => {
