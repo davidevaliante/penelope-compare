@@ -65,7 +65,9 @@ const Compare: FunctionComponent<Props> = ({ streamerData, bonusToShow }) => {
 
                 <h1>Top Casino choice for this Slot Machine</h1>
 
-                {bonuses && bonuses.map((bonus : StreamerBonus) => <BonusStripe key={`${bonus.name}`} bonus={bonus} countryCode={country} />)}
+                {bonuses && bonuses.length > 2 && bonuses.map((bonus : StreamerBonus) => <BonusStripe key={`${bonus.name}`} bonus={bonus} countryCode={country} />)}
+
+                {bonuses && bonuses.length <= 2 && streamerData.bonuses.map((bonus : StreamerBonus) => <BonusStripe key={`${bonus.name}`} bonus={bonus} countryCode={country} />)}
 
                 <div style={{ padding: '1rem' }}>
                     <VideoDiscalimer />
@@ -132,7 +134,7 @@ export async function getServerSideProps({ query }) {
     const aquaClient = new AquaClient()
 
 
-    const bonusToShow = pickedBonus.split(',')
+    const bonusToShow = pickedBonus.split('-')
 
     const streamer = await axios.get(`${configuration.api}/streamers/${configuration.streamerId}`)
    
