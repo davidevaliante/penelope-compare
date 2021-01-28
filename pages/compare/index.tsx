@@ -15,8 +15,9 @@ import axios from 'axios';
 import  Router  from 'next/router';
 import lowerCase  from 'lodash/lowerCase'
 import { useState } from 'react';
-import { CircularProgress } from '@material-ui/core';
+import { CircularProgress, Container } from '@material-ui/core';
 import FullPageLoader from './../../components/FullPageLoader';
+import Wrapper from '../../components/Layouts/Wrapper';
 
 interface Props {
     streamerData : Streamer
@@ -28,8 +29,7 @@ const Compare: FunctionComponent<Props> = ({ streamerData, bonusToShow }) => {
     const [country, setCountry] = useState<string | undefined>(undefined)
     const [bonuses, setBonuses] = useState<StreamerBonus[] | undefined>(undefined)
 
-    console.log(streamerData)
-   
+  
     useEffect(() => {
         geoLocate()
     }, [])
@@ -81,51 +81,6 @@ const Compare: FunctionComponent<Props> = ({ streamerData, bonusToShow }) => {
 
 }
 
-
-const Wrapper = styled.div`
-        background : #f3f3f3;
-        min-height : 100vh;
-
-        .bottom{
-            padding : 1rem;
-            font-family  : 'Roboto', sans-serif;
-        }
-
-`
-
-const Container = styled.div`
-    display : flex;
-    flex-direction : column;
-    justify-content : center;
-    background : #f8f8f8;
-    box-shadow:         3px 3px 5px 0px rgba(50, 50, 50, 0.75);
-
-    .top-bar{
-        display : flex;
-        flex-direction : column;
-        justify-content : center;
-        max-height : 100px;
-        background: ${(props) => props.theme.colors.primary};
-        box-shadow:         3px 3px 5px 0px rgba(50, 50, 50, 0.75);
-    }
-
-    .logo{
-        height : 90px;
-        margin : .5rem auto;
-    }
-
-    h1{
-        color : ${(props) => props.theme.colors.primary};
-        padding : 1rem;
-        text-align : center;
-        font-size : 1.5rem;
-    }
-
-    ${tablet}{
-        max-width : 1200px;
-        margin : 0rem auto;
-    }
-`
 
 export async function getServerSideProps({ query }) {
 

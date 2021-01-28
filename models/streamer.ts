@@ -1,7 +1,12 @@
+
 export class Streamer {
     constructor(
         public alias : string,
-        public bonuses : StreamerBonus[]
+        public bonuses : StreamerBonus[],
+        public countryBonusList : {
+            label : string,
+            bonuses : StreamerBonus[]
+        }[]
     ){}
 }
 
@@ -34,6 +39,7 @@ export class StreamerBonus{
         }[],
         public compareCode : string,
         public borderColor : string,
-        public rating : number
+        public rating : number,
+        public id?: number
     ){}
 }
